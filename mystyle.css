@@ -1,8 +1,62 @@
 body {
-    background-color: lightblue;
+    background-image: url("https://cbsla.files.wordpress.com/2016/07/bikesahre.png?w=921&h=576&crop=1");
+     background-repeat: no-repeat;
+      /* Full height */
+    height: 100%; 
+    margin: 0
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 h1 {
     color: navy;
-    margin-left: 20px;
+    text-align:center;
 }
+p1 {
+    color: black;
+    text-align:center;
+    
+}
+p2 {
+    color: green;
+    text-align:left;
+}
+
+
+table, th, td {
+    border: 1px solid black;
+
+
+}
+
+h3 {
+    color: red;
+    margin-right: 20px;
+    text-align:left;
+    clear: both;
+
+}
+ol.c {
+    list-style-type: upper-alpha;
+    margin-right: 100px;
+}
+a:link {
+    color: red;
+}
+
+/* visited link */
+a:visited {
+    color: green;
+}
+
+/* mouse over link */
+a:hover {
+    color: hotpink;
+}
+
+/* selected link */
+a:active {
+    color: blue;
+}	
