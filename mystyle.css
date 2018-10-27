@@ -25,7 +25,11 @@ p {
     padding-right: 250px;
 }
 
-
+.subtitles {
+    color: blue;
+    padding-left: 50px;
+    padding-right: 50px;
+} 
 table, th, td {
     border: 1px solid black;
 
