@@ -2,7 +2,9 @@
 <html>
 	<head>
 		<title>byuan45.github.io.</title>
-		<link rel="stylesheet" type="text/css" href="/mystyle.css">
+		<link rel="stylesheet" type="text/css" href="mystyle.css">
+
+	</script>
 		<!-- Script for Vertical Bar Chart -->
 		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     	<script type="text/javascript">
@@ -132,8 +134,37 @@
 		</script>
 	</head>
 	<body>
+		<header>
+
+      </header>
+       <script>
+    var header = document.querySelector('header');
+    var section = document.querySelector('section');
+    var requestURL = 'https://byuan45.github.io/socrata_metadata.json';
+    var request = new XMLHttpRequest();
+    request.open('GET', requestURL);
+    request.responseType = 'json';
+    request.send();
+    request.onload = function() {
+    var superHeroes = request.response;
+    populateHeader(superHeroes);
+    showHeroes(superHeroes);
+  }
+    function populateHeader(jsonObj) {
+    var myH1 = document.createElement('h1');
+    myH1.textContent = jsonObj['createdAt'];
+    header.appendChild(myH1);
+
+    var myPara = document.createElement('p');
+    myPara.textContent = 'Hometown: ' + jsonObj['columns'][0]['width'] + ' // Formed: ' + jsonObj['formed'];
+    header.appendChild(myPara);
+  }
+  
+    </script>
 		<h1>
 			Bike Sharing in Los Angeles
+			bikeShare['createdAt']
+
 		</h1>
 		<p1>
 			Bike shares are becoming increasingly common in cities in the United States. Commuters have been using bike sharing as a method of transportation for the flexibility, cost savings, exercise, and a myriad of other benefits. While being quite successful, many bike shares are still relatively new and have room for optimization. This website is dedicated to analyzing and visualizing bike share data from the city of Los Angeles.
@@ -183,13 +214,28 @@
 			    <td>15</td>
 		 	</tr>
 		</table>
-		<h3 style="clear: both">
+		<h3>
 			Graph 3: Month vs number of bikes used
 			<span style="float:right;">
 			Seasonal Pie Chart
 		</span></h3>
    		<div id="line_top_x" style="float: left;"></div>
 		<div id="piechart" style="float: right;"></div>
+<p id="demo"></p>
+
+<script>
+
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        var myObj = JSON.parse(this.responseText);
+        document.getElementById("demo").innerHTML = myObj.name;
+    }
+};
+xmlhttp.open("GET", "json_demo.txt", true);
+xmlhttp.send();
+
+</script>
 	</body>
 </html>
 
