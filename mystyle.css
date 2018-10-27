@@ -10,18 +10,19 @@ body {
     background-size: cover;
 }
 
-h1 {
-    color: navy;
-    text-align:center;
-}
-p1 {
-    color: black;
-    text-align:center;
-    
-}
-p2 {
+#Title {
     color: green;
-    text-align:left;
+    text-align: center;
+} 
+h3 {
+    color: orange;
+    text-align: center;
+} 
+p {
+    color: red;
+    text-align:center;
+    padding-left: 250px;
+    padding-right: 250px;
 }
 
 
@@ -31,13 +32,6 @@ table, th, td {
 
 }
 
-h3 {
-    color: red;
-    margin-right: 20px;
-    text-align:left;
-    clear: both;
-
-}
 ol.c {
     list-style-type: upper-alpha;
     margin-right: 100px;
