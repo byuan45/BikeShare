@@ -27,70 +27,101 @@
 				Ranking of Popular Start/Stop Locations
 				</span>
 			</h4>
-			
+			<div id="PassVsDuration"></div>
 			<h4 class= 'subtitles'>
 				Bike ID vs Distance
 				<span style="float:right;">
 				Distance Information
 				</span>
 			</h4>
+			<div id="chart_div"></div>
 			<h4 class= 'subtitles'>
 				Number of Bikes used each Month
 				<span style="float:right;">
 				Bikes used each Season
 				</span>
 			</h4>
-
         </section>
-        	   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  <div id="chart_div"></div>
-      <script type="text/javascript">
-      	var obj, dbParam, xmlhttp, myObj, x, txt = "";
-obj = { "table":"customers", "limit":10 };
-dbParam = JSON.stringify(obj);
-xmlhttp = new XMLHttpRequest();
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  		<script type="text/javascript">
+      		var xmlhttp, myObj  = "";
+      		var y = 0;
+      		var x = 0;
+      		var z = 0;
+			xmlhttp = new XMLHttpRequest();
+			xmlhttp.onreadystatechange = function() {
+    		if (this.readyState == 4 && this.status == 200) {
+        		myObj = JSON.parse(this.responseText);
+        		google.charts.load('current', {packages: ['corechart']});
+				google.charts.setOnLoadCallback(drawColumnChart1);
+				google.charts.setOnLoadCallback(drawColumnChart2);
+				for ( var i = 0; i < myObj.length; i++) {
+					if (myObj[i]['Passholder Type'] == "Monthly Pass"){
+						y += parseInt(myObj[i].Duration);
+					} else if (myObj[i]['Passholder Type'] == "Flex Pass"){
+						x += parseInt(myObj[i].Duration);
+					} else {
+						z += parseInt(myObj[i].Duration);
+					}
+				}
+        		function drawColumnChart1() {
+      				var data = new google.visualization.DataTable();
+      				data.addColumn('string', 'Type');
+        			data.addColumn('number', 'Duration (Seconds)');
+        			data.addRows([
+			          ['Monthly', y],
+			          ['Flex', x],
+			          ['Walk-In', z],
+			          ['Total', x+y+z]
+        			]);
+      				var options = {
+                    	'width':400,
+                    	'height':300};
+      				var chart = new google.visualization.ColumnChart(
+        			document.getElementById('PassVsDuration'));
+					chart.draw(data, options);
+				}
+	
+        		function drawColumnChart2() {
+        			var BikeID = [[1,2]];
+					for (var i = 0; i < myObj.length; i++) {
+						for (var x = 0; x < BikeID.length; x++){
+							if( BikeID[x][0] == myObj[i]['Bike ID']){
+								BikeID[x][1] += parseInt(myObj[i].Duration);
+								break;
+							} else if (x == BikeID.length - 1 ) {
+								var t = [myObj[i]['Bike ID'], 0]
+								BikeID.push(t);
+						}
 
-xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        myObj = JSON.parse(this.responseText);
+					}
 
-            txt += myObj.createdAt;
- 
-        google.charts.load('current', {packages: ['corechart']});
-google.charts.setOnLoadCallback(drawChart);
-        function drawChart() {
-      var data = new google.visualization.DataTable();
-      data.addColumn('string', 'Topping');
-        data.addColumn('number', 'Slices');
-        data.addRows([
-          ['Mushrooms', myObj.columns[0].position],
-          ['Onions', 1],
-          ['Olives', 1],
-          ['Zucchini', 1],
-          ['Pepperoni', 2]
-        ]);
+				}
+      				var data = new google.visualization.DataTable();
+      				data.addColumn('string', 'Type');
+        			data.addColumn('number', 'Duration (Seconds)');
+        			for (var i = 1; i < BikeID.length; i++){
+						data.addRow(
+			            [BikeID[i][0], BikeID[i][1]]	
+			            );
+        			}
+      				var options = {
+                    	'width':500,
+                    	'height':300};
+      				var chart = new google.visualization.ColumnChart(
+        			document.getElementById('chart_div'));
+					chart.draw(data, options);
+				}
 
-      var options = {'title':'How Much Pizza I Ate Last Night',
-                       'width':400,
-                       'height':300};
-
-      var chart = new google.visualization.ColumnChart(
-        document.getElementById('chart_div'));
-
-      chart.draw(data, options);
-    }
-        document.getElementById("demo").innerHTML = txt;
-    }
-};
-xmlhttp.open("GET", 'https://byuan45.github.io/socrata_metadata.json', true);
-xmlhttp.send();
-
-</script>
+			}
+		};
+		xmlhttp.open("GET", 'https://byuan45.github.io/result.json', true);
+		xmlhttp.send();
+		</script>
     
 
 
    
-  </script>
 
 
 	</body>
