@@ -4,7 +4,6 @@
 		<title>byuan45.github.io.</title>
 		<link rel="stylesheet" type="text/css" href="mystyle.css">
 
-	</script>
 		<!-- Script for Vertical Bar Chart -->
 		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     	<script type="text/javascript">
@@ -48,18 +47,16 @@
       		google.charts.setOnLoadCallback(drawChart);
       		function drawChart() {
 		        var data = google.visualization.arrayToDataTable([
-		        	['Year', 'Sales', 'Expenses', 'Profit'],
-		        	['2014', 1000, 400, 200],
-		          	['2015', 1170, 460, 250],
-		          	['2016', 660, 1120, 300],
-		         	['2017', 1030, 540, 350]
+		        	['Passholder', 'Duration'],
+		        	['Monthly', 5,
+		          	['Flex', 1170],
+		          	['One-Way', 660],
 		        ]);
 		        var options = {
-		        	chart: {
-		            title: 'Company Performance',
-		            subtitle: 'Sales, Expenses, and Profit: 2014-2017',
-		          	}
-	        	};
+					'width':400,
+					'height':200,
+					'backgroundColor': 'transparent',
+				};
 	        	var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
 	        	chart.draw(data, google.charts.Bar.convertOptions(options));
       		}
@@ -109,8 +106,8 @@
     		}
   		</script>
   		<!-- Script for Pie Chart -->
-  		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-		<script type="text/javascript">
+  		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js">
+		
 			// Load google charts
 			google.charts.load('current', {'packages':['corechart']});
 			google.charts.setOnLoadCallback(drawChart);
@@ -222,20 +219,6 @@
    		<div id="line_top_x" style="float: left;"></div>
 		<div id="piechart" style="float: right;"></div>
 <p id="demo"></p>
-
-<script>
-
-var xmlhttp = new XMLHttpRequest();
-xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        var myObj = JSON.parse(this.responseText);
-        document.getElementById("demo").innerHTML = myObj.name;
-    }
-};
-xmlhttp.open("GET", "json_demo.txt", true);
-xmlhttp.send();
-
-</script>
 	</body>
 </html>
 
