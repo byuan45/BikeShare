@@ -21,7 +21,8 @@
 		</header>
 		
         <section>
-        	<h4 class= 'subtitles'>
+      
+  	<h4 class= 'subtitles'>
 				Passholder Type vs Time Duration
 				<span style="float:right;">
 				Ranking of Popular Start/Stop Locations
@@ -29,8 +30,6 @@
 			</h4>
 			<div id="foo"style="float:right"></div>
 			<div id="PassHolderTypeVsDuration"></div>
-
-
 			<h4 class= 'subtitles'>
 				Bike ID vs Distance
 				<span style="float:right;">
@@ -48,7 +47,7 @@
 			<span style="float:right;">
 			<div id="Seasonal"></div>
 			<div id="foo"></div>
-			
+
         </section>
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   		<script type="text/javascript">
@@ -64,6 +63,7 @@
 				google.charts.setOnLoadCallback(drawColumnChart3);
 				google.charts.setOnLoadCallback(drawPieChart);
 				
+
         		// create an array of most popular starting locations
         		var Start = [[0,0]];
 					for (var i = 0; i < myObj.length; i++) {
@@ -202,10 +202,12 @@
         				document.getElementById('Seasonal'));
 					chart.draw(data, options);
 				}
+
+
 			}
 			};
 			xmlhttp.open("GET", 'https://byuan45.github.io/result.json', true);
 			xmlhttp.send();
 			</script>
 
-
+</body>
