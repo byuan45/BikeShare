@@ -3,224 +3,209 @@
 	<head>
 		<title>byuan45.github.io.</title>
 		<link rel="stylesheet" type="text/css" href="mystyle.css">
-
-		<!-- Script for Vertical Bar Chart -->
-		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    	<script type="text/javascript">
-      		google.charts.load('current', {'packages':['bar']});
-      		google.charts.setOnLoadCallback(drawStuff);
-     	function drawStuff() {
-        	var data = new google.visualization.arrayToDataTable([
-	          ['Galaxy', 'Distance', 'Brightness'],
-	          ['Canis Major Dwarf', 8000, 23.3],
-	          ['Sagittarius Dwarf', 24000, 4.5],
-	          ['Ursa Major II Dwarf', 30000, 14.3],
-	          ['Lg. Magellanic Cloud', 50000, 0.9],
-	          ['Bootes I', 60000, 13.1]
-        	]);
-	        var options = {
-	        	width: 800,
-	          	chart: {
-	            title: 'Nearby galaxies',
-	            subtitle: 'distance on the left, brightness on the right'
-	        	},
-		        bars: 'horizontal', // Required for Material Bar Charts.
-		        series: {
-		        	0: { axis: 'distance' }, // Bind series 0 to an axis named 'distance'.
-		            1: { axis: 'brightness' } // Bind series 1 to an axis named 'brightness'.
-		        },
-		        axes: {
-		        	x: {
-		            	distance: {label: 'parsecs'}, // Bottom x-axis.
-		            	brightness: {side: 'top', label: 'apparent magnitude'} // Top x-axis.
-		            }
-		       	}
-	        };
-      		var chart = new google.charts.Bar(document.getElementById('dual_x_div'));
-      		chart.draw(data, options);
-    	};
-    	</script>
-    	<!-- Script for Horizontal Bar Chart -->
-    	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    	<script type="text/javascript">
-      		google.charts.load('current', {'packages':['bar']});
-      		google.charts.setOnLoadCallback(drawChart);
-      		function drawChart() {
-		        var data = google.visualization.arrayToDataTable([
-		        	['Passholder', 'Duration'],
-		        	['Monthly', 5,
-		          	['Flex', 1170],
-		          	['One-Way', 660],
-		        ]);
-		        var options = {
-					'width':400,
-					'height':200,
-					'backgroundColor': 'transparent',
-				};
-	        	var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
-	        	chart.draw(data, google.charts.Bar.convertOptions(options));
-      		}
-    	</script>
-    	<!-- Script for Line Graph -->
-    	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    	<script type="text/javascript">
-      		google.charts.load('current', {'packages':['line']});
-      		google.charts.setOnLoadCallback(drawChart);
-			function drawChart() {
-		      	var data = new google.visualization.DataTable();
-		      	data.addColumn('number', 'Day');
-		      	data.addColumn('number', 'Guardians of the Galaxy');
-			    data.addColumn('number', 'The Avengers');
-			    data.addColumn('number', 'Transformers: Age of Extinction');
-			    data.addRows([
-			        [1,  37.8, 80.8, 41.8],
-			        [2,  30.9, 69.5, 32.4],
-			        [3,  25.4,   57, 25.7],
-			        [4,  11.7, 18.8, 10.5],
-			        [5,  11.9, 17.6, 10.4],
-			        [6,   8.8, 13.6,  7.7],
-			        [7,   7.6, 12.3,  9.6],
-			        [8,  12.3, 29.2, 10.6],
-			        [9,  16.9, 42.9, 14.8],
-			        [10, 12.8, 30.9, 11.6],
-			        [11,  5.3,  7.9,  4.7],
-			        [12,  6.6,  8.4,  5.2],
-			        [13,  4.8,  6.3,  3.6],
-			        [14,  4.2,  6.2,  3.4]
-			    ]);
-			    var options = {
-			  	    chart: {
-			        	title: 'Box Office Earnings in First Two Weeks of Opening',
-			        	subtitle: 'in millions of dollars (USD)'
-			        },
-			        width: 200,
-			        height: 200,
-			        axes: {
-			        	x: {
-			            0: {side: 'top'}
-			          	}
-			        }
-	      		};
-      			var chart = new google.charts.Line(document.getElementById('line_top_x'));
-				chart.draw(data, google.charts.Line.convertOptions(options));
-    		}
-  		</script>
-  		<!-- Script for Pie Chart -->
-  		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js">
-		
-			// Load google charts
-			google.charts.load('current', {'packages':['corechart']});
-			google.charts.setOnLoadCallback(drawChart);
-			// Draw the chart and set the chart values
-			function drawChart() {
-				var data = google.visualization.arrayToDataTable([
-				['Task', 'Hours per Day'],
-			    ['Work', 8],
-			    ['Friends', 2],
-		     	['Eat', 2],
-				['TV', 2],
-				['Gym', 2],
-				['Sleep', 8]
-				]);
-				// Optional; add a title and set the width and height of the chart
-				var options = {'width':150, 'height':150};
-			  	// Display the chart inside the <div> element with id="piechart"
-			  	var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-			  	chart.draw(data,options);
-			}
-		</script>
 	</head>
 	<body>
 		<header>
+			<h1 id="Title">
+				Bike Sharing in Los Angeles
+			</h1>
+			<script>
+			var header = document.querySelector('header');
+			var title = document.createElement('h3');
+			    title.textContent = 'Created by Brandon Yuan';
+			    header.appendChild(title);
+			var detail = document.createElement('p');
+			    detail.textContent = 'Bike shares are becoming increasingly common in cities in the United States. Commuters have been using bike sharing as a method of transportation for the flexibility, cost savings, exercise, and a myriad of other benefits. While being quite successful, many bike shares are still relatively new and have room for optimization. This website is dedicated to analyzing and visualizing bike share data from the city of Los Angeles.'
+			    header.appendChild(detail)
+			</script>
+		</header>
+		
+        <section>
+        	<h4 class= 'subtitles'>
+				Passholder Type vs Time Duration
+				<span style="float:right;">
+				Ranking of Popular Start/Stop Locations
+				</span>
+			</h4>
+			<div id="foo"style="float:right"></div>
+			<div id="PassHolderTypeVsDuration"></div>
 
-      </header>
-       <script>
-    var header = document.querySelector('header');
-    var section = document.querySelector('section');
-    var requestURL = 'https://byuan45.github.io/socrata_metadata.json';
-    var request = new XMLHttpRequest();
-    request.open('GET', requestURL);
-    request.responseType = 'json';
-    request.send();
-    request.onload = function() {
-    var superHeroes = request.response;
-    populateHeader(superHeroes);
-    showHeroes(superHeroes);
-  }
-    function populateHeader(jsonObj) {
-    var myH1 = document.createElement('h1');
-    myH1.textContent = jsonObj['createdAt'];
-    header.appendChild(myH1);
 
-    var myPara = document.createElement('p');
-    myPara.textContent = 'Hometown: ' + jsonObj['columns'][0]['width'] + ' // Formed: ' + jsonObj['formed'];
-    header.appendChild(myPara);
-  }
-  
-    </script>
-		<h1>
-			Bike Sharing in Los Angeles
-			bikeShare['createdAt']
-
-		</h1>
-		<p1>
-			Bike shares are becoming increasingly common in cities in the United States. Commuters have been using bike sharing as a method of transportation for the flexibility, cost savings, exercise, and a myriad of other benefits. While being quite successful, many bike shares are still relatively new and have room for optimization. This website is dedicated to analyzing and visualizing bike share data from the city of Los Angeles.
-		</p1>
-		<h3>
-			Graph 1: Passholder Type vs duration
+			<h4 class= 'subtitles'>
+				Bike ID vs Distance
+				<span style="float:right;">
+				Distance Information
+				</span>
+			</h4>
+			<div id="IDvsDuration"></div>
+			<h4 class= 'subtitles'>
+				Number of Bikes used each Month
+				<span style="float:right;">
+				Bikes used each Season
+				</span>
+			</h4>
+			<div id="chart"style="float:left";></div>
 			<span style="float:right;">
-			Ranking of Popular Start/Stop Locations
-			</span>
-		</h3>
-    	<div id="dual_x_div" style="width: 500px; height: 300px; float: left"></div>
-		<ol class="c" style="float:right;">
-			<li><p><b><a href="https://en.wikipedia.org/wiki/Coffee" target="_blank">Coffee</a></b></p></li>
-			<li>Coca Cola</li>
-		</ol>
-		<h3>
-			Graph 2: Bike ID vs Distance
-			<span style="float:right;">
-			Distance Information
-			</span>
-		</h3>
-    	<div id="columnchart_material" style="width: 800px; height: 500px; float: left;"></div>
-		<table style="float:right;">
-  			<tr>
-    			<th>Passholder Type</th>
-    			<th>Total Distance</th>
-    			<th>Average Distance</th>
- 			</tr>
-  			<tr>
-			    <td>Monthly</td>
-			    <td>2</td>
-			    <td>3</td>
-			</tr>
-			<tr>
-			    <td>Flex</td>
-			    <td>6</td>
-			    <td>7</td>
-		 	</tr>
-		 	<tr>
-			    <td>Walk-Up</td>
-			    <td>10</td>
-			    <td>11</td>
-		 	</tr>
-		 	<tr>
-			    <td>Total</td>
-			    <td>14</td>
-			    <td>15</td>
-		 	</tr>
-		</table>
-		<h3>
-			Graph 3: Month vs number of bikes used
-			<span style="float:right;">
-			Seasonal Pie Chart
-		</span></h3>
-   		<div id="line_top_x" style="float: left;"></div>
-		<div id="piechart" style="float: right;"></div>
-<p id="demo"></p>
-	</body>
-</html>
+			<div id="Seasonal"></div>
+			<div id="foo"></div>
+			
+        </section>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  		<script type="text/javascript">
+      		var xmlhttp, myObj  = "";
+			xmlhttp = new XMLHttpRequest();
+			xmlhttp.onreadystatechange = function() {
+    		if (this.readyState == 4 && this.status == 200) {
+        		myObj = JSON.parse(this.responseText);
+        		//drawing Google Charts and Graphs
+        		google.charts.load('current', {packages: ['corechart']});
+				google.charts.setOnLoadCallback(drawColumnChart1);
+				google.charts.setOnLoadCallback(drawColumnChart2);
+				google.charts.setOnLoadCallback(drawColumnChart3);
+				google.charts.setOnLoadCallback(drawPieChart);
+				
+        		// create an array of most popular starting locations
+        		var Start = [[0,0]];
+					for (var i = 0; i < myObj.length; i++) {
+						for (var x = 0; x < Start.length; x++){
+							if( Start[x][0] == myObj[i]['Starting Station ID']){
+								Start[x][1] ++;
+								break;
+							} else if (x == Start.length - 1 ) {
+								var t = [myObj[i]['Starting Station ID'], 0]
+								Start.push(t);
+							}
+						}
+					}
+				// create a list of most popular starting locations
+				function makeUL(array) {
+    				var list = document.createElement('ul');
+				    for(var i = 0; i < array.length; i++) {
+				        var item = document.createElement('li');
+        				item.appendChild(document.createTextNode(array[i]));
+        				list.appendChild(item);
+    				}	
+				    return list;
+				}
+				document.getElementById('foo').appendChild(makeUL(Start[0]));
 
+
+        		// Column Chart for Passholder Type vs Time
+        		function drawColumnChart1() {
+					var MonthlyDuration = 0;
+      				var FlexDuration = 0;
+      				var WalkInDuration = 0;
+        			for ( var i = 0; i < myObj.length; i++) {
+						if (myObj[i]['Passholder Type'] == "Monthly Pass"){
+							MonthlyDuration += parseInt(myObj[i].Duration);
+						} else if (myObj[i]['Passholder Type'] == "Flex Pass"){
+							FlexDuration += parseInt(myObj[i].Duration);
+						} else {
+							WalkInDuration += parseInt(myObj[i].Duration);
+						}
+					}
+      				var data = new google.visualization.DataTable();
+      				var Total = MonthlyDuration + FlexDuration + WalkInDuration;
+      				data.addColumn('string', 'PassholderType');
+        			data.addColumn('number', 'Duration (Seconds)');
+        			data.addRows([
+			        	['Monthly', MonthlyDuration],
+			        	['Flex', FlexDuration],
+			        	['Walk-In', WalkInDuration],
+			        	['Total', Total]
+        			]);
+      				var options = {
+                    	'width':400,
+                    	'height':300};
+      				var chart = new google.visualization.ColumnChart(
+        				document.getElementById('PassHolderTypeVsDuration'));
+					chart.draw(data, options);
+				}
+	
+				// Column Chart for Bike ID vs Time
+        		function drawColumnChart2() {
+        			var BikeID = [[1,2]];
+					for (var i = 0; i < myObj.length; i++) {
+						for (var x = 0; x < BikeID.length; x++){
+							if( BikeID[x][0] == myObj[i]['Bike ID']){
+								BikeID[x][1] += parseInt(myObj[i].Duration);
+								break;
+							} else if (x == BikeID.length - 1 ) {
+								var newBike = [myObj[i]['Bike ID'], 0]
+								BikeID.push(newBike);
+							}	
+						}
+					}
+      				var data = new google.visualization.DataTable();
+      				data.addColumn('string', 'BikeID');
+        			data.addColumn('number', 'Duration (Seconds)');
+        			for (var i = 1; i < BikeID.length; i++){
+						data.addRow(
+			            [BikeID[i][0], BikeID[i][1]]	
+			            );
+        			}
+      				var options = {
+                    	'width':500,
+                    	'height':300};
+      				var chart = new google.visualization.ColumnChart(
+        				document.getElementById('IDvsDuration'));
+					chart.draw(data, options);
+				}
+
+				// array of amount of times bikes are used each month
+				var Months = [[1,0, 'Jan'],[2,0, 'Feb'],[3,0, 'Mar'],[4,0, 'Apr'],
+							[5,0, 'May'],[6,0, 'Jun'],[7,0, 'Jul'],[8,0, 'Aug'],
+							[9,0, 'Sep'],[10,0, 'Oct'],[11,0, 'Nov'],[12,0, 'Dec']];
+          		for (var i = 0; i < myObj.length; i++) {
+            		for (var x = 0; x < Months.length; x++){
+              			var everything =  myObj[i]['Start Time'];
+              			var month = everything.slice(5,7);
+              			if( Months[x][0] == parseInt(month)){
+                			Months[x][1]++;
+              			} 
+            		}
+          		}
+
+          		// graph of amount of times bikes are used each month
+				function drawColumnChart3() {	
+              		var data = new google.visualization.DataTable();
+              		data.addColumn('string', 'Months');
+              		data.addColumn('number', 'Duration (Seconds)');
+              		for (var i = 0; i < Months.length; i++){
+           				data.addRow(
+                  			[Months[i][2], Months[i][1]]  
+                  			);
+              		}		
+      				var options = {
+                    	'width':500,
+                    	'height':300};
+      				var chart = new google.visualization.LineChart(
+        				document.getElementById('chart'));
+					chart.draw(data, options);
+				}
+
+				//graoh of amount of times bikes are used each season
+				function drawPieChart() {		
+              		var data = new google.visualization.DataTable();
+              		data.addColumn('string', 'Type');
+              		data.addColumn('number', 'Duration (Seconds)');
+              		data.addRows([
+			        	['Fall', Months[8][1]+ Months[9][1]+Months[10][1]],
+			        	['Winter', Months[11][1]+Months[0][1]+Months[1][1]],
+			        	['Spring', Months[2][1]+Months[3][1]+Months[4][1]],
+			        	['Summer', Months[5][1]+Months[6][1]+Months[7][1]]
+        			]);
+      				var options = {
+                    	'width':500,
+                    	'height':300};
+      				var chart = new google.visualization.PieChart(
+        				document.getElementById('Seasonal'));
+					chart.draw(data, options);
+				}
+			}
+			};
+			xmlhttp.open("GET", 'https://byuan45.github.io/result.json', true);
+			xmlhttp.send();
+			</script>
 
 
